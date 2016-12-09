@@ -1,0 +1,36 @@
+{
+    "name": "dws",
+    "displayName": "Dynamsoft Webcam SDK",
+    "description": "Dynamsoft Webcam SDK provides JavaScript APIs that enable you to easily capture images and video streams from USB Video Class (UVC) compatible webcams from within a browser.",
+    "version": "0.0.1",
+    "publisher": "Dynamsoft",
+    "icon": "images/dws.jpg",
+    "categories": [
+        "Snippets"
+    ],
+    "galleryBanner": {
+        "color": "#f5f3f4",
+        "theme": "light"
+    },
+    "homepage": "http://www.dynamsoft.com/Products/dynamsoft-webcam-sdk.aspx",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Dynamsoft/Dynamsoft-Webcam-SDK.git"
+    },
+    "engines": {
+        "vscode": "^1.5.0"
+    },
+    "keywords": [
+        "webcam online",
+        "JavaScript webcam",
+        "web camera",
+        "HTML webcam",
+        "browser webcam"
+    ],
+    "contributes": {
+        "snippets": [{
+            "language": "html",
+            "path": "./snippets/html.json"
+        }]
+    }
+}
