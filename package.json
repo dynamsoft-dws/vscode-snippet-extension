@@ -1,10 +1,10 @@
 {
-    "name": "dws",
-    "displayName": "Dynamsoft Webcam SDK",
-    "description": "Dynamsoft Webcam SDK provides JavaScript APIs that enable you to easily capture images and video streams from USB Video Class (UVC) compatible webcams from within a browser.",
-    "version": "0.0.2",
+    "name": "dcs",
+    "displayName": "Dynamsoft Camera SDK",
+    "description": "Dynamsoft Camera SDK provides JavaScript APIs that enable you to easily capture images and video streams from USB Video Class (UVC) compatible webcams from within a browser.",
+    "version": "0.0.3",
     "publisher": "Dynamsoft",
-    "icon": "images/dws.jpg",
+    "icon": "images/dcs.jpg",
     "categories": [
         "Snippets"
     ],
