@@ -1,30 +1,30 @@
 {
     "include": {
-        "prefix": "dws include",
+        "prefix": "dcs include",
         "body": [
-            "<script type=\"text/javascript\" src=\"http://www.dynamsoft.com/demo/dws/DWSResources/dynamsoft.webcam.min.js\"> </script>"
+            "<script type=\"text/javascript\" src=\"http://www.dynamsoft.com/library/dcs/dynamsoft.camera.min.js\"> </script>"
         ],
         "description": "Include Dynamsoft Webcam JavaScript library."
     },
     "full sample": {
-        "prefix": "dws full sample",
+        "prefix": "dcs full sample",
         "body": [
             "<!DOCTYPE html>\n<head>\n\t<title>Hello World</title>",
-            "\t<script type=\"text/javascript\" src=\"http://www.dynamsoft.com/demo/dws/DWSResources/dynamsoft.webcam.min.js\"> </script>\n</head>\n\n<body>",
+            "\t<script type=\"text/javascript\" src=\"http://www.dynamsoft.com/library/dcs/dynamsoft.camera.min.js\"> </script>\n</head>\n\n<body>",
             "\t<h1>Dynamsoft Webcam SDK: Hello World</h1>",
             "\t<select size=\"1\" id=\"source\" width=\"220px\" onchange=\"onSourceChanged()\"></select>",
             "\t<input type=\"button\" value=\"Capture\" onclick=\"onCapture();\" />\n",
             "\t<div id=\"video-container\"></div>\n\t<div id=\"image-container\"></div>\n",
             "\t<script type=\"text/javascript\">",
-            "\t\tvar dwsObject, imageViewer;var width = 480,height = 320;\n",
+            "\t\tvar dcsObject, imageViewer;var width = 480,height = 320;\n",
             "\t\tfunction onInitSuccess(videoViewerId, imageViewerId) {\n",
-            "\t\t\tdwsObject = dynamsoft.dwsEnv.getObject(videoViewerId);\n\t\t\tdwsObject.videoviewer.setWidth(width);\n\t\t\tdwsObject.videoviewer.setHeight(height);\n\t\t\timageViewer = dwsObject.getImageViewer(imageViewerId);\n\t\t\timageViewer.ui.setWidth(width);\n\t\t\timageViewer.ui.setHeight(height);\n\t\t\tvar cameraList = dwsObject.camera.getCameraList();\n\t\t\tfor (var i = 0; i < cameraList.length; i++) {\n\t\t\t\tdocument.getElementById(\"source\").options.add(new Option(cameraList[i], i));\n\t\t\t}",
-            "\n\t\t\tif (cameraList.length > 0) {\n\t\t\t\tdwsObject.camera.takeCameraOwnership(cameraList[0]);\n\t\t\t\tdwsObject.camera.playVideo();\n\t\t\t} else {\n\t\t\t\talert('No camera is connected.');\n\t\t\t}\n\t\t}",
+            "\t\t\tdcsObject = dynamsoft.dcsEnv.getObject(videoViewerId);\n\t\t\tdcsObject.videoviewer.setWidth(width);\n\t\t\tdcsObject.videoviewer.setHeight(height);\n\t\t\timageViewer = dcsObject.getImageViewer(imageViewerId);\n\t\t\timageViewer.ui.setWidth(width);\n\t\t\timageViewer.ui.setHeight(height);\n\t\t\tvar cameraList = dcsObject.camera.getCameraList();\n\t\t\tfor (var i = 0; i < cameraList.length; i++) {\n\t\t\t\tdocument.getElementById(\"source\").options.add(new Option(cameraList[i], i));\n\t\t\t}",
+            "\n\t\t\tif (cameraList.length > 0) {\n\t\t\t\tdcsObject.camera.takeCameraOwnership(cameraList[0]);\n\t\t\t\tdcsObject.camera.playVideo();\n\t\t\t} else {\n\t\t\t\talert('No camera is connected.');\n\t\t\t}\n\t\t}",
             "\n\t\tfunction onInitFailure(errorCode, errorString) {alert('Init failed: ' + errorString);}",
-            "\n\t\tfunction onSourceChanged() {\n\t\t\tif (!dwsObject) return;\n\t\t\tvar source = document.getElementById(\"source\");\n\t\t\tvar camera = source.options[source.selectedIndex].text;\n\t\t\tdwsObject.camera.takeCameraOwnership(camera);\n\t\t\tdwsObject.camera.playVideo();\n\t\t}",
-            "\n\t\tfunction onCapture() {\n\t\t\tif (!dwsObject) return;\n\t\t\tdwsObject.camera.captureImage('image-container');\n\t\t\tif (dwsObject.getErrorCode() !== EnumDWS_ErrorCode.OK) {\n\t\t\t\talert('Capture error: ' + dwsObject.getErrorString());\n\t\t\t}\n\t\t}",
-            "\n\t\tdynamsoft.dwsEnv.init('video-container', 'image-container', onInitSuccess, onInitFailure);",
-            "\n\t\twindow.onbeforeunload = function() {if (dwsObject) dwsObject.destroy();};",
+            "\n\t\tfunction onSourceChanged() {\n\t\t\tif (!dcsObject) return;\n\t\t\tvar source = document.getElementById(\"source\");\n\t\t\tvar camera = source.options[source.selectedIndex].text;\n\t\t\tdcsObject.camera.takeCameraOwnership(camera);\n\t\t\tdcsObject.camera.playVideo();\n\t\t}",
+            "\n\t\tfunction onCapture() {\n\t\t\tif (!dcsObject) return;\n\t\t\tdcsObject.camera.captureImage('image-container');\n\t\t\tif (dcsObject.getErrorCode() !== EnumDCS_ErrorCode.OK) {\n\t\t\t\talert('Capture error: ' + dcsObject.getErrorString());\n\t\t\t}\n\t\t}",
+            "\n\t\tdynamsoft.dcsEnv.init('video-container', 'image-container', onInitSuccess, onInitFailure);",
+            "\n\t\twindow.onbeforeunload = function() {if (dcsObject) dcsObject.destroy();};",
             "\t</script>\n</body>\n</html>"
         ],
         "description": "The full sample code - hello world."

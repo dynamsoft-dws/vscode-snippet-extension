@@ -1,5 +1,5 @@
-# Dynamsoft Webcam SDK for Windows: JavaScript SDK for Any Web Browsers
-[Dynamsoft Webcam SDK][1] provides JavaScript APIs that enable you to easily capture images and video streams from USB Video Class (UVC) compatible webcams from within a browser. With the browser-based webcam library, you can capture a live video stream into a container and grab an image with a couple lines of code in your web application.
+# Dynamsoft Camera SDK for Windows: JavaScript SDK for Any Web Browsers
+[Dynamsoft Camera SDK][1] provides JavaScript APIs that enable you to easily capture images and video streams from USB Video Class (UVC) compatible webcams from within a browser. With the browser-based webcam library, you can capture a live video stream into a container and grab an image with a couple lines of code in your web application.
 
 ## Screenshot
 
@@ -21,9 +21,9 @@
 * [Developer Center][5]
 
 ## How to Use the Extension
-Use the prefix **dws** to list the code snippets in **HTML** files.
+Use the prefix **dcs** to list the code snippets in **HTML** files.
 
-![dws vscode extension](http://www.codepool.biz/wp-content/uploads/2016/12/vscode-dws.PNG)
+![dcs vscode extension](http://www.codepool.biz/wp-content/uploads/2017/01/vscode-dcs.PNG)
 
 ## Sample Code: Hello World
 
@@ -32,32 +32,32 @@ Use the prefix **dws** to list the code snippets in **HTML** files.
 <html>
 
 <head>
-    <title>DWS Demo</title>
+    <title>DCS Demo</title>
 </head>
 
 <body>
-    <h1>Dynamsoft Webcam SDK: Hello World</h1>
+    <h1>Dynamsoft Camera SDK: Hello World</h1>
     <select size="1" id="source" width="220px" onchange="onSourceChanged()"></select>
     <input type="button" value="Capture" onclick="onCapture();" />
 
     <div id="video-container"> </div>
     <div id="image-container"> </div>
 
-    <script type="text/javascript" src="http://www.dynamsoft.com/demo/dws/DWSResources/dynamsoft.webcam.min.js">
+    <script type="text/javascript" src="http://www.dynamsoft.com/library/dcs/dynamsoft.camera.min.js">
     </script>
     <script>
-        var dwsObject, imageViewer;
+        var dcsObject, imageViewer;
         var width = 480,
             height = 320;
 
         function onInitSuccess(videoViewerId, imageViewerId) {
-            dwsObject = dynamsoft.dwsEnv.getObject(videoViewerId); // Get the Dynamsoft Webcam object
-            dwsObject.videoviewer.setWidth(width);
-            dwsObject.videoviewer.setHeight(height);
-            imageViewer = dwsObject.getImageViewer(imageViewerId); // Get a specific image viewer
+            dcsObject = dynamsoft.dcsEnv.getObject(videoViewerId); // Get the Dynamsoft Webcam object
+            dcsObject.videoviewer.setWidth(width);
+            dcsObject.videoviewer.setHeight(height);
+            imageViewer = dcsObject.getImageViewer(imageViewerId); // Get a specific image viewer
             imageViewer.ui.setWidth(width);
             imageViewer.ui.setHeight(height);
-            var cameraList = dwsObject.camera.getCameraList(); // Get a list of available cameras
+            var cameraList = dcsObject.camera.getCameraList(); // Get a list of available cameras
             for (var i = 0; i < cameraList.length; i++) {
                 document.getElementById("source").options.add(new Option(cameraList[i], i));
             }
@@ -65,8 +65,8 @@ Use the prefix **dws** to list the code snippets in **HTML** files.
             if (cameraList.length > 0) {
                 // Call this method to take the ownership, 
                 // in case the listed camera is occupied by another Dynamsoft Webcam process.
-                dwsObject.camera.takeCameraOwnership(cameraList[0]);
-                dwsObject.camera.playVideo();
+                dcsObject.camera.takeCameraOwnership(cameraList[0]);
+                dcsObject.camera.playVideo();
             } else {
                 alert('No camera is connected.');
             }
@@ -77,26 +77,26 @@ Use the prefix **dws** to list the code snippets in **HTML** files.
         };
 
         function onSourceChanged() {
-            if (!dwsObject) return;
+            if (!dcsObject) return;
             var source = document.getElementById("source");
             var camera = source.options[source.selectedIndex].text;
-            dwsObject.camera.takeCameraOwnership(camera);
-            dwsObject.camera.playVideo();
+            dcsObject.camera.takeCameraOwnership(camera);
+            dcsObject.camera.playVideo();
         };
 
         function onCapture() {
-            if (!dwsObject) return;
-            dwsObject.camera.captureImage('image-container');
-            if (dwsObject.getErrorCode() !== EnumDWS_ErrorCode.OK) {
-                alert('Capture error: ' + dwsObject.getErrorString());
+            if (!dcsObject) return;
+            dcsObject.camera.captureImage('image-container');
+            if (dcsObject.getErrorCode() !== EnumDWS_ErrorCode.OK) {
+                alert('Capture error: ' + dcsObject.getErrorString());
             }
         };
 
         // Initialize Dynamsoft Webcam object
-        dynamsoft.dwsEnv.init('video-container', 'image-container', onInitSuccess, onInitFailure);
+        dynamsoft.dcsEnv.init('video-container', 'image-container', onInitSuccess, onInitFailure);
         // Destroy Dynamsoft Webcam object when the page is closed
         window.onbeforeunload = function() {
-            if (dwsObject) dwsObject.destroy();
+            if (dcsObject) dcsObject.destroy();
         };
     </script>
 </body>
